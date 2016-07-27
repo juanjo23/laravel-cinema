@@ -11,6 +11,25 @@
 |
 */
 
+/* Restful controller */
+Route::resource('movie', 'MovieController');
+
+
+Route::get('saludar/', 'MiController@index');
+Route::get('saludar/{name}', 'MiController@saludo');
+
+Route::get('test', function(){
+  return "Hola desde routes.php";
+});
+
+
+
+//Con parametros
+Route::get('test/{id}', function($id){
+  return "Hola desde routes.php: ".$id;
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
