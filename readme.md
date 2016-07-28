@@ -10,7 +10,7 @@ php artisan make:controller ControllerName --resources
 php artisan make:model ModelName
 
 //Crear migracion
-php artisan make:migration create_genres_table --create=genred
+php artisan make:migration create_movies_table --create=movies
 
 //Ejecutar migraciones
 php artisan migrate
