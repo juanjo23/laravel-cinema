@@ -1,3 +1,25 @@
+# Commandos a la mano
+```php
+//Correr servidor
+php artisan serve --port=XX
+
+//Generar controlador con funciones restApi incluidas
+php artisan make:controller ControllerName --resources
+
+//Generar modelo
+php artisan make:model ModelName
+
+//Crear migracion
+php artisan make:migration create_genres_table --create=genred
+
+//Ejecutar migraciones
+php artisan migrate
+
+//Rollback
+php artisan migrate:rollback
+
+```
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
