@@ -13,6 +13,8 @@
 
 /* RESTful controllers */
 Route::resource('movie', 'MovieController');
+Route::resource('user', 'UserController');
+
 
 Route::resource('/', 'FrontController@index');
 Route::resource('/contacto', 'FrontController@contacto');
