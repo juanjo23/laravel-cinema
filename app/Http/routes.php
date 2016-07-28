@@ -11,8 +11,14 @@
 |
 */
 
-/* Restful controller */
+/* RESTful controllers */
 Route::resource('movie', 'MovieController');
+
+Route::resource('/', 'FrontController@index');
+Route::resource('/contacto', 'FrontController@contacto');
+Route::resource('/reviews', 'FrontController@reviews');
+
+Route::get('admin','FrontController@admin');
 
 
 Route::get('saludar/', 'MiController@index');
@@ -27,9 +33,4 @@ Route::get('test', function(){
 //Con parametros
 Route::get('test/{id}', function($id){
   return "Hola desde routes.php: ".$id;
-});
-
-
-Route::get('/', function () {
-    return view('welcome');
 });
