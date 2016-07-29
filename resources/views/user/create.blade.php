@@ -1,32 +1,11 @@
 @extends('layouts.admin')
 @section('content')
+  @include ('alerts.request')
 
-  {!!Form::open()!!}
-    <div class="form-group">
-        {!!Form::label('Nombre:')!!}
-        {!!Form::text('name', null, ['class'=>'form-control', 'placeholder'=>'ingresa el nombre del usuario', ]  )!!}
-    </div>
-    <div class="form-group">
+  {!!Form::open(['route'=>'user.store', 'method'=>'POST'])!!}
+    @include('user.partials.form')
 
-    </div>
-    <div class="form-group">
-
-    </div>
+    {!!Form::submit('Registrar', ['class'=>'btn btn-primary' ]  )!!}
   {!!Form::close()!!}
 
-  <form class="" action="" method="post">
-    <div class="form-group">
-      <label for="">Nombre:</label>
-      <input type="text" name="name" value="" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="">Correo:</label>
-      <input type="text" name="name" value="" class="form-control">
-    </div>
-    <div class="form-group">
-      <label for="">Contraseña:</label>
-      <input type="password" name="name" value="" class="form-control">
-    </div>
-    <button class="btn btn-primary" type="submit" name="button">Enviar</button>
-  </form>
 @stop

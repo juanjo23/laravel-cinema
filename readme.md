@@ -6,6 +6,9 @@ php artisan serve --port=XX
 //Generar controlador con funciones RESTful incluidas
 php artisan make:controller ControllerName --resource
 
+//Generar resource
+php artisan make:resource
+  
 //Generar modelo
 php artisan make:model ModelName
 
@@ -17,6 +20,8 @@ php artisan migrate
 
 //Rollback
 php artisan migrate:rollback
+
+ => \
 ```
 
 # Laravel PHP Framework

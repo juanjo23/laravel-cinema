@@ -12,9 +12,9 @@
 */
 
 /* RESTful controllers */
-Route::resource('movie', 'MovieController');
 Route::resource('user', 'UserController');
-
+Route::resource('log', 'LogController');
+/* end RESTful */
 
 Route::resource('/', 'FrontController@index');
 Route::resource('/contacto', 'FrontController@contacto');
@@ -22,17 +22,6 @@ Route::resource('/reviews', 'FrontController@reviews');
 
 Route::get('admin','FrontController@admin');
 
+Route::auth();
 
-Route::get('saludar/', 'MiController@index');
-Route::get('saludar/{name}', 'MiController@saludo');
-
-Route::get('test', function(){
-  return "Hola desde routes.php";
-});
-
-
-
-//Con parametros
-Route::get('test/{id}', function($id){
-  return "Hola desde routes.php: ".$id;
-});
+Route::get('/home', 'HomeController@index');
