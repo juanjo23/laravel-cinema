@@ -8,9 +8,12 @@ php artisan make:controller ControllerName --resource
 
 //Generar resource
 php artisan make:resource
-  
+
 //Generar modelo
 php artisan make:model ModelName
+
+//Generar middleware
+php artisan make:middleware Middleware
 
 //Crear migracion
 php artisan make:migration create_movies_table --create=movies

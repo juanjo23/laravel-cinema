@@ -34,7 +34,7 @@
             <ul class="nav navbar-top-links navbar-right">
                  <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                         
+                        {{ Auth::user()->name }}
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
@@ -50,6 +50,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
+                      @if(Auth::user()->id == 1)
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> Usuario<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -61,6 +62,7 @@
                                 </li>
                             </ul>
                         </li>
+                      @endif
                         <li>
                             <a href="#"><i class="fa fa-film fa-fw"></i> Pelicula<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -74,13 +76,13 @@
                         </li>
 
                         <li>
-                            <a href="#"><i class="fa fa-child fa-fw"></i> Genero<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-child fa-fw"></i> Género<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class='fa fa-plus fa-fw'></i> Agregar</a>
+                                    <a href="{!!URL::to('genero/create')!!}"><i class='fa fa-plus fa-fw'></i> Agregar</a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class='fa fa-list-ol fa-fw'></i> Generos</a>
+                                    <a href="{!!URL::to('genero')!!}"><i class='fa fa-list-ol fa-fw'></i> Generos</a>
                                 </li>
                             </ul>
                         </li>
@@ -101,6 +103,9 @@
     {!!Html::script('js/bootstrap.min.js')!!}
     {!!Html::script('js/metisMenu.min.js')!!}
     {!!Html::script('js/sb-admin-2.js')!!}
+
+    @section('scripts')
+    @show
 
 </body>
 

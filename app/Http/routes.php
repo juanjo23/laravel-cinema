@@ -14,14 +14,17 @@
 /* RESTful controllers */
 Route::resource('user', 'UserController');
 Route::resource('log', 'LogController');
+Route::resource('genero', 'GeneroController');
 /* end RESTful */
 
-Route::resource('/', 'FrontController@index');
-Route::resource('/contacto', 'FrontController@contacto');
-Route::resource('/reviews', 'FrontController@reviews');
+Route::get('generos', 'GeneroController@listing');
+
+
+Route::get('/', 'FrontController@index');
+Route::get('/contacto', 'FrontController@contacto');
+Route::get('/reviews', 'FrontController@reviews');
 
 Route::get('admin','FrontController@admin');
-
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

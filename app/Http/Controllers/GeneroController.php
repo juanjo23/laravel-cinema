@@ -5,8 +5,10 @@ namespace Cinema\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Cinema\Http\Requests;
+use Cinema\Genre;
 
-class MovieController extends Controller
+
+class GeneroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,14 @@ class MovieController extends Controller
      */
     public function index()
     {
-        return "Estoy en el index";
+      return view('genero.index');
+    }
+
+    public function listing(){
+      $genres = Genre::all();
+      return response()->json(
+        $genres->toArray()
+      );
     }
 
     /**
@@ -26,7 +35,7 @@ class MovieController extends Controller
     public function create()
     {
         //
-        return "Estoy en el create";
+        return view('genero.create');
     }
 
     /**
@@ -37,7 +46,12 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      if($request->ajax()){
+        Genre::create($request->all());
+        return response()->json([
+          "message" => "Genero creado"
+        ]);
+      }
     }
 
     /**
@@ -59,7 +73,10 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genre = Genre::find($id);
+        return response()->json(
+          $genre->toArray()
+      );
     }
 
     /**
@@ -71,7 +88,12 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $genre = Genre::find($id);
+        $genre->fill($request->all());
+        $genre->save();
+        return response()->json([
+          'message' => 'Genero actualizado'
+        ]);
     }
 
     /**
