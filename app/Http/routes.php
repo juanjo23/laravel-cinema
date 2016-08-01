@@ -15,13 +15,14 @@
 Route::resource('user', 'UserController');
 Route::resource('log', 'LogController');
 Route::resource('genero', 'GeneroController');
+Route::resource('movie', 'MovieController');
 /* end RESTful */
 
 Route::get('generos', 'GeneroController@listing');
 
 
 Route::get('/', 'FrontController@index');
-Route::get('/contacto', 'FrontController@contacto');
+Route::get('/contact', 'FrontController@contact');
 Route::get('/reviews', 'FrontController@reviews');
 
 Route::get('admin','FrontController@admin');

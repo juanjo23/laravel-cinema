@@ -26,9 +26,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = User::paginate(3);
+        if($request->ajax()){
+          return response()->json(view('user.partials.users', compact('users'))->render());
+        }
         return view('user.index', compact('users'));
     }
 

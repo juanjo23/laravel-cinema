@@ -27,9 +27,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <div class="full">
     <div class="menu">
       <ul>
-        <li><a class="active" href="index.html"><i class="home"></i></a></li>
-        <li><a href="reviews.html"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
-        <li><a href="contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
+        <li><a class="active" href="/"><i class="home"></i></a></li>
+        <li><a href="{!!URL::to('reviews')!!}"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+        <li><a href="{!!URL::to('contact')!!}"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
       </ul>
     </div>
     <div class="main">

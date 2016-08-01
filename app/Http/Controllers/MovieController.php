@@ -1,14 +1,11 @@
 <?php
-
 namespace Cinema\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use Cinema\Http\Requests;
-use Cinema\Http\Requests\GenreRequest;
+use Cinema\Http\Controllers\Controller;
 use Cinema\Genre;
-
-class GeneroController extends Controller
+use Cinema\Movie;
+class MovieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,16 +14,9 @@ class GeneroController extends Controller
      */
     public function index()
     {
-      return view('genero.index');
+        $movies = Movie::Movies();
+        return view('movie.index', compact("movies"));
     }
-
-    public function listing(){
-      $genres = Genre::all();
-      return response()->json(
-        $genres->toArray()
-      );
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -34,26 +24,20 @@ class GeneroController extends Controller
      */
     public function create()
     {
-        //
-        return view('genero.create');
+        $genres = Genre::lists('genre', 'id');
+        return view('movie.create',compact('genres'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GenreRequest $request)
+    public function store(Request $request)
     {
-      if($request->ajax()){
-        Genre::create($request->all());
-        return response()->json([
-          "message" => "Genero creado"
-        ]);
-      }
+        Movie::create($request->all());
+        return "Listo";
     }
-
     /**
      * Display the specified resource.
      *
@@ -64,7 +48,6 @@ class GeneroController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -73,12 +56,8 @@ class GeneroController extends Controller
      */
     public function edit($id)
     {
-        $genre = Genre::find($id);
-        return response()->json(
-          $genre->toArray()
-      );
+        //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -88,14 +67,8 @@ class GeneroController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $genre = Genre::find($id);
-        $genre->fill($request->all());
-        $genre->save();
-        return response()->json([
-          'message' => 'Genero actualizado'
-        ]);
+        //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -104,10 +77,6 @@ class GeneroController extends Controller
      */
     public function destroy($id)
     {
-      $genre = Genre::find($id);
-      $genre->delete();
-      return response()->json([
-        'message' => 'Genero eliminado'
-      ]);
+        //
     }
 }

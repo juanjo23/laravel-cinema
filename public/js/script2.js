@@ -9,7 +9,7 @@ function carga_generos(){
   tableDatos.empty();
   $.get(route, function(response){
     $(response).each(function(key, value){
-      tableDatos.append("<tr><td>"+value.genre+"</td> <td><button value="+value.id+" class='btn btn-primary btn-edit'  data-toggle='modal' data-target='#myModal'>Editar</button> <button value="+value.id+" class='btn btn-danger'>Eliminar</button> </td> </tr>");
+      tableDatos.append("<tr><td>"+value.genre+"</td> <td><button value="+value.id+" class='btn btn-primary btn-edit'  data-toggle='modal' data-target='#myModal'>Editar</button> <button value="+value.id+" class='btn btn-danger btn-delete'>Eliminar</button> </td> </tr>");
     });
   });
 }
@@ -18,6 +18,25 @@ $(document).on('click', '.btn-edit', function(){
   $.get(route, function(response){
     $('#genre').val(response.genre);
     $('#id').val(response.id);
+  });
+});
+
+$(document).on('click', '.btn-delete', function(){
+  var route = 'genero/' + $(this).val();
+  var token = $('#token').val();
+
+  if(!confirm("¿Seguro que desea eliminar el género?"))
+    return;
+
+  $.ajax({
+    url: route,
+    headers: {'X-CSRF-TOKEN': token},
+    type: 'DELETE',
+    dataType: 'json',
+    success: function(){
+      carga_generos();
+      $("#msj-success").fadeIn();
+    }
   });
 });
 
