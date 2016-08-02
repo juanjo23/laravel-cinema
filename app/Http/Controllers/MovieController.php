@@ -59,6 +59,7 @@ class MovieController extends Controller
     public function edit($id)
     {
         $movie = Movie::find($id);
+        $this->notFound($movie);
         $genres = Genre::lists('genre', 'id');
         return view('movie.edit',['movie'=>$movie,'genres'=>$genres]);
 
@@ -73,6 +74,7 @@ class MovieController extends Controller
     public function update(Request $request, $id)
     {
       $movie = Movie::find($id);
+      $this->notFound($movie);
       $movie->fill($request->all());
       $movie->save();
       Session::flash('message', 'Movie updated');
@@ -87,6 +89,7 @@ class MovieController extends Controller
     public function destroy($id)
     {
         $movie = Movie::find($id);
+        $this->notFound($movie);
         $movie->delete();
         Storage::delete($movie->path);
         Session::flash('message', 'Movie deleted');
