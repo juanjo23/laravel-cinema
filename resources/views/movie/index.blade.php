@@ -17,7 +17,7 @@
 					<td>
 						<img src="movies/{{$movie->path}}" alt="" style="width:100px;"/>
 					</td>
-					<td><button type="button" class="btn btn-primary" name="button">Editar</button></td>
+          <td> {!!link_to_route('movie.edit', $title = 'Editar', $parameters = $movie->id, $attributes = ['class'=>'btn btn-primary'])!!}</td>
 				</tbody>
 			@endforeach
 		</table>

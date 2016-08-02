@@ -1,13 +1,14 @@
 <?php
+
 namespace Cinema\Http\Controllers;
+
 use Illuminate\Http\Request;
+
 use Cinema\Http\Requests;
-use Cinema\Http\Controllers\Controller;
-use Cinema\Genre;
-use Cinema\Movie;
+use Mail;
 use Session;
-use Storage;
-class MovieController extends Controller
+
+class MailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +17,9 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::Movies();
-        return view('movie.index', compact("movies"));
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,9 +27,9 @@ class MovieController extends Controller
      */
     public function create()
     {
-        $genres = Genre::lists('genre', 'id');
-        return view('movie.create',compact('genres'));
+        //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,9 +38,14 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        Movie::create($request->all());
-        return "Listo";
+        Mail::send('emails.contact', $request->all(), function($msj){
+          $msj->subject('Correo de contacto');
+          $msj->to('juan.miramontes@cimat.mx');
+        });
+        Session::flash('message', "Mensaje enviado correctamente");
+        return redirect('contact');
     }
+
     /**
      * Display the specified resource.
      *
@@ -50,6 +56,7 @@ class MovieController extends Controller
     {
         //
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -58,11 +65,9 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        $movie = Movie::find($id);
-        $genres = Genre::lists('genre', 'id');
-        return view('movie.edit',['movie'=>$movie,'genres'=>$genres]);
-
+        //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -72,12 +77,9 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $movie = Movie::find($id);
-      $movie->fill($request->all());
-      $movie->save();
-      Session::flash('message', 'Movie updated');
-      return redirect('movie');
+        //
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -86,10 +88,6 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        $movie = Movie::find($id);
-        $movie->delete();
-        Storage::delete($movie->path);
-        Session::flash('message', 'Movie deleted');
-        return redirect('movie');
+        //
     }
 }

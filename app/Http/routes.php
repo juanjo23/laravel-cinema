@@ -16,6 +16,7 @@ Route::resource('user', 'UserController');
 Route::resource('log', 'LogController');
 Route::resource('genero', 'GeneroController');
 Route::resource('movie', 'MovieController');
+Route::resource('mail', 'MailController');
 /* end RESTful */
 
 Route::get('generos', 'GeneroController@listing');
